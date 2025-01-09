@@ -1,26 +1,19 @@
 from rest_framework import serializers
-from django.core.files.uploadedfile import InMemoryUploadedFile
-from django.contrib.auth.hashers import make_password
-from .models import User, Profile
-import re
+from .models import Login, Profile
 
-class UserSerializer(serializers.ModelSerializer):
+class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
+        model = Login
         fields = ['username', 'password']
-        extra_kwargs = {
-            'password': {'write_only': True},
-        }
+        extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
-        # Hash the password before saving
-        password = validated_data.pop('password')
-        validated_data['password'] = make_password(password)
-        return User.objects.create(**validated_data)
+        user = Login.objects.create(
+            username=validated_data['username'],
+            password=validated_data['password']
+        )
+        return user
 
-    def update(self, instance, validated_data):
-        # Hash password if provided
-        password = validated_data.pop('password', None)
-        if password:
-            validated_data['password'] = make_password(password)
-        return super().update(instance, validated_data)
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length=20)
+    password = serializers.CharField(max_length=255, write_only=True)

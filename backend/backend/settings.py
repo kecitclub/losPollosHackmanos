@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'Backend.urls'
+ROOT_URLCONF = 'backend.urls'
 
 TEMPLATES = [
     {
@@ -77,11 +77,11 @@ WSGI_APPLICATION = 'Backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'your_database_name',
-        'USER': 'your_database_user',
-        'PASSWORD': 'your_database_password',
-        'HOST': 'your_database_host',  # e.g., 'localhost'  #Change 
-        'PORT': 'your_database_port',  # e.g., '5432'   #Change
+        'NAME': 'wage',
+        'USER': 'postgres',
+        'PASSWORD': 'hackathon',
+        'HOST': '192.168.1.114',  # e.g., 'localhost'  #Change 
+        'PORT': '5432',  # e.g., '5432'   #Change
     }
 }
 
