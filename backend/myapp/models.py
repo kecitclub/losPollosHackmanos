@@ -7,11 +7,7 @@ class Login(models.Model):
     username = models.CharField(max_length=20, unique=True)
     password = models.CharField(max_length=255)
 
-<<<<<<< HEAD
     def str(self):
-=======
-    def __str__(self):
->>>>>>> 2b4044a03d2cd5e7ef1ac029d7922d533084a71f
         return self.username
 
 
@@ -41,10 +37,5 @@ class Profile(models.Model):
     )
 
     profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
-<<<<<<< HEAD
     def str(self):
         return self.user.username
-=======
-    def __str__(self):
-        return self.user.username
->>>>>>> 2b4044a03d2cd5e7ef1ac029d7922d533084a71f
